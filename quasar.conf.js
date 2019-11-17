@@ -2,7 +2,7 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-module.exports = function(ctx) {
+module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
@@ -39,8 +39,7 @@ module.exports = function(ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: "auto",
 
-      components: [
-      ],
+      components: [],
       directives: [],
 
       // Quasar plugins
@@ -53,6 +52,13 @@ module.exports = function(ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
 
     build: {
+      env: ctx.dev ? { // so on dev we'll have
+        VUE_APP_API_URL: process.env.VUE_APP_API_URL,
+        SECRET_KEY: process.env.SECRET_KEY
+      } : { // and on build (production):
+        VUE_APP_API_URL: process.env.VUE_APP_API_URL,
+        SECRET_KEY: process.env.SECRET_KEY
+      },
       scopeHoisting: true,
       // vueRouterMode: 'history',
       // showProgress: false,
@@ -103,8 +109,7 @@ module.exports = function(ctx) {
         orientation: "portrait",
         background_color: "#ffffff",
         theme_color: "#027be3",
-        icons: [
-          {
+        icons: [{
             src: "statics/icons/icon-128x128.png",
             sizes: "128x128",
             type: "image/png"
