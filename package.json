@@ -9,7 +9,9 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "deploy": "aws s3 sync ./dist/spa s3://cinus.me --profile=s3-deploy",
+    "inv": "aws cloudfront create-invalidation --profile=s3-deploy --distribution-id E3SYXXWSPQROKN --paths / /index.html /favicon.ico /error.html /js/* /css/* /fonts/* /img/*"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
