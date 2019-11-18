@@ -23,7 +23,6 @@ const actions = {
   }, user) {
     return call(this, "post", `signin`, user, {
       success: res => {
-        console.log(res)
         commit("signin", res.data)
         this.$router.push({
           name: 'home'
@@ -36,8 +35,10 @@ const actions = {
   }, user) {
     return call(this, "post", `signup`, user, {
       success: res => {
-        console.log(res)
-        commit("signup")
+        commit("signup", res.data)
+        this.$router.push({
+          name: 'signupFinished'
+        })
       }
     })
   },
@@ -86,6 +87,10 @@ const mutations = {
   },
   signout(state) {
     this.state.user = {}
+  },
+  signup(state, data) {
+    this.state.user.tempEmail = data.email
+    this.state.user.tempName = data.name
   }
 }
 

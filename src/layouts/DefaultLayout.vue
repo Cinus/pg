@@ -33,22 +33,34 @@
           </template>
 
           <q-list>
-            <q-item clickable v-close-popup v-show="logined" @click="signout">
-              <q-item-section avatar>
-                <q-avatar icon="exit_to_app" color="negative" text-color="white" size="md" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label >로그아웃</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-close-popup v-show="!logined" :to="{ name: 'signin' }" :active="false">
-              <q-item-section avatar>
-                <q-avatar icon="vpn_key" color="primary" text-color="white" size="md" />
-              </q-item-section>
-              <q-item-section>
-                <span class="text-black">로그인</span>
-              </q-item-section>
-            </q-item>
+            <template v-if="logined">
+              <q-item clickable v-close-popup v-show="logined" @click="signout">
+                <q-item-section avatar>
+                  <q-avatar icon="exit_to_app" color="negative" text-color="white" size="md" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label >로그아웃</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-else>
+              <q-item clickable v-close-popup :to="{ name: 'signin' }" :active="false">
+                <q-item-section avatar>
+                  <q-avatar icon="vpn_key" color="primary" text-color="white" size="md" />
+                </q-item-section>
+                <q-item-section>
+                  <span class="text-black">로그인</span>
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-close-popup :to="{ name: 'signup' }" :active="false">
+                <q-item-section avatar>
+                  <q-avatar icon="person_add" color="primary" text-color="white" size="md" />
+                </q-item-section>
+                <q-item-section>
+                  <span class="text-black">회원가입</span>
+                </q-item-section>
+              </q-item>
+            </template>
           </q-list>
         </q-btn-dropdown>
       </q-toolbar>
