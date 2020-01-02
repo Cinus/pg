@@ -22,54 +22,38 @@ const actions = {
     commit
   }, user) {
     return call(this, "post", `signin`, user, {
-      success: res => {
-        commit("signin", res.data)
-        this.$router.push({
-          name: 'home'
-        })
-      }
+      commit: 'signin',
+      push: 'home'
     })
   },
   signup({
     commit
   }, user) {
     return call(this, "post", `signup`, user, {
-      success: res => {
-        commit("signup", res.data)
-        this.$router.push({
-          name: 'signupFinished'
-        })
-      }
+      commit: 'signup',
+      push: 'signupFinished'
     })
   },
   signupVerify({
     commit
   }, code) {
-    return call(
-      this,
-      "post",
-      `signupVerify`, {
-        code: code
-      }, {
-        success: res => {
-          commit("signin", res.data)
+    return call(this, "post", `signupVerify`, {
+      code: code
+    }, {
+      commit: 'signin',
+      push: 'home',
+      error: res => {
+        if (res.data && res.data.errCode == 'ERR001') {
+          this.$router.push({
+            name: 'signin'
+          })
+        } else {
           this.$router.push({
             name: 'home'
           })
-        },
-        error: res => {
-          if (res.data && res.data.errCode == 'ERR001') {
-            this.$router.push({
-              name: 'signin'
-            })
-          } else {
-            this.$router.push({
-              name: 'home'
-            })
-          }
         }
       }
-    )
+    })
   }
 }
 

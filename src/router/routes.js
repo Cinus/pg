@@ -21,6 +21,18 @@ const routes = [{
     path: "signupFinished",
     name: "signupFinished",
     component: () => import("pages/user/SignupFinished.vue")
+  }, {
+    path: "boards/:boardId/posts",
+    name: "posts",
+    component: () => import("pages/post/Posts.vue")
+  }, {
+    path: "boards/:boardId/posts/:id",
+    name: "postDetail",
+    component: () => import("pages/post/PostDetail.vue")
+  }, {
+    path: "games/coloring",
+    name: "coloring",
+    component: () => import("pages/game/Coloring.vue")
   }]
 }]
 

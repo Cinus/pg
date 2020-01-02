@@ -1,6 +1,7 @@
 <template>
   <q-layout view="hHh Lpr lFf">
-    <q-header elevated>
+    <q-btn class="fixed-top-right" icon="close" round @click="$q.fullscreen.toggle()"/>
+    <q-header elevated v-show="!$q.fullscreen.isActive">
       <q-toolbar>
         <q-btn
           flat
@@ -72,14 +73,21 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item-label header>게시판</q-item-label>
+        <q-item clickable :to="{ name: 'posts', params: { board_id: 24 } }">
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon name="speaker_notes" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>자유게시판</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable :to="{ name: 'coloring' }">
+          <q-item-section avatar>
+            <q-icon name="speaker_notes" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Coloring</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>

@@ -22,15 +22,20 @@
 <style></style>
 
 <script>
+import { mapActions } from "vuex"
 
 export default {
-  name: "SignupFinished",
+  name: "Posts",
 
   data() {
     return {
-      email: this.$store.state.user.tempEmail,
-      name: this.$store.state.user.tempName
     }
+  },
+  mounted() {
+    console.log("HELLO!")
+  },
+  methods: {
+    ...mapActions("board", ["getPostDetail"])
   }
 }
 </script>

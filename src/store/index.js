@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Vuex from "vuex"
 import user from "./modules/user"
+import board from "./modules/board"
 import sys from "./modules/sys"
 import createPersistedState from "vuex-persistedstate"
 import * as Cookies from "js-cookie"
@@ -12,7 +13,8 @@ export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       sys,
-      user
+      user,
+      board
     },
 
     // enable strict mode (adds overhead!)

@@ -30,7 +30,7 @@ const call = ({ state, commit }, method, path, params, option) => {
         commit('sys/endFetch')
         if (option) {
           if (option.success) option.success(res)
-          if (option.commit) commit(option.commit, res.data.response)
+          if (option.commit) commit(option.commit, res.data)
           if (option.push) {
             if (typeof option.push === "string") {
               router.push({ name: option.push })
